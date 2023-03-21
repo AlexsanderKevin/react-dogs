@@ -4,12 +4,13 @@ import useForm from '../../Hooks/useForm'
 import Button from '../Forms/Button'
 import Input from '../Forms/Input'
 import { UserContext } from '../../UserContext'
+import Error from '../Helper/Error'
 
 const LoginForm = () => {
   const username = useForm()
   const password = useForm()
 
-  const { userLogin } = React.useContext( UserContext )
+  const { userLogin, error, loading } = React.useContext( UserContext )
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -20,8 +21,8 @@ const LoginForm = () => {
   }
 
   return (
-    <section>
-      <h1> Login </h1>
+    <section className='animeLeft'>
+      <h1 className='title'> Login </h1>
       <form action='' onSubmit={ handleSubmit }>
         <Input
           label='Usuário'
@@ -35,8 +36,12 @@ const LoginForm = () => {
           name='password'
           {...password}
         />
-        
-        <Button>Entrar</Button>
+        { loading ? (
+          <Button disabled>Carregando...</Button>
+        ) : (
+          <Button>Entrar</Button> 
+        )}
+        <Error error={ error } />
       </form>
 
       <Link to='/login/criar'>Cadastro</Link>
