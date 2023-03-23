@@ -12,6 +12,17 @@ export const TOEKN_POST = body => {
     }
   }
 }
+export const TOEKN_VALIDATE_POST = token => {
+  return {
+    url: API_URL + '/jwt-auth/v1/token/validate',
+    options: {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    }
+  }
+}
 
 export const USER_GET = token => {
   return {
@@ -25,14 +36,16 @@ export const USER_GET = token => {
   }
 }
 
-export const TOEKN_VALIDATE_POST = token => {
+
+export const USER_POST = body => {
   return {
-    url: API_URL + '/jwt-auth/v1/token/validate',
+    url: API_URL + '/api/user',
     options: {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + token,
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify( body )
     }
   }
 }
