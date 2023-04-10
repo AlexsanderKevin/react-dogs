@@ -36,7 +36,6 @@ export const USER_GET = token => {
   }
 }
 
-
 export const USER_POST = body => {
   return {
     url: API_URL + '/api/user',
@@ -108,3 +107,12 @@ export const COMMENT_POST = ( id, body ) => {
     },
   }
 }
+
+export const PASSWORD_LOST = body => ({
+  url: API_URL + '/api/password/lost',
+  options: {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify( body )
+  }
+})
