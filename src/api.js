@@ -125,3 +125,11 @@ export const PASSWORD_RESET = body => ({
     body: JSON.stringify( body )
   }
 })
+
+export const STATS_GET = () => ({
+  url: API_URL + '/api/stats',
+  options: {
+    method: 'GET',
+    headers: { Authorization: 'Bearer ' + window.localStorage.getItem( 'token' ) },
+  }
+})
